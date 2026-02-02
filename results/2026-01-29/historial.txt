@@ -1,0 +1,160 @@
+    1  sudo apt update
+    2  sudo apt install git build-essential autoconf automake libtool python3 r-base
+    3  pws
+    4  pwd
+    5  cd
+    6  cd descargas
+    7  pwd
+    8  cd ~
+    9  cd~
+   10  cd $HOME
+   11  pwd
+   12  ls
+   13  ls -1
+   14  ls
+   15  cd Documentos/
+   16  cd..
+   17  cd ..
+   18  cd Documentos/
+   19  mkdir Bioinformática
+   20  cd Bioinformática/
+   21  cd ..
+   22  cd Bioinformática/
+   23  pwd
+   24  ls
+   25  ls -1
+   26  mkdir doc
+   27  mkdir data
+   28  mkdir results
+   29  ls-1
+   30  ls -1
+   31  rm guio-es.Qmd
+   32  ls -1
+   33  rm guio-es.Qmd\:Zone.Identifier 
+   34  ls -1
+   35  rm doc
+   36  rm -r doc
+   37  ls -1
+   38  mkdir doc
+   39  ls -1
+   40  cd results/
+   41  mkdir 2026-01-29
+   42  ls
+   43  cd ..
+   44  cd results/
+   45  cd 2026-01-29/
+   46  ls -1 /mnt
+   47  ls -1 /mnt/C
+   48  ls -1 /mnt/c
+   49  ls -1 /mnt/c/Users/mdela/
+   50  ls -1 /mnt/c/Users/mdela/Downloads/
+   51  cp guio-es.Qmd guio-es.Qmd
+   52  ls -1 /mnt/c/Users/mdela/Downloads/guio-es.Qmd 
+   53  ls -1 /mnt/c/Users/mdela/Downloads/
+   54  cp /mnt/c/Users/mdela/Downloads/guio-es.Qmd /home/mdelareina/Documentos/Bioinformática/results/2026-01-29/
+   55  ls
+   56  cp /mnt/c/Users/mdela/Downloads/guio-es.Qmd /home/mdelareina/Documentos/Bioinformática/results/2026-01-29/Guion1.Qmd
+   57  ls
+   58  rm guio-es.Qmd 
+   59  ls
+   60  R
+   61  guio-es.Qmd
+   62  R guio-es.Qmd
+   63  cd ~
+   64  apt install emboss exonerate wget muscle
+   65  y
+   66  apt install emboss exonerate wget muscle
+   67  yes
+   68  ls
+   69  whoami
+   70  apt install emboss exonerate wget muscle
+   71  sudo apt install emboss exonerate wget muscle
+   72  Rstudio
+   73  rstudio
+   74  sudo snap install rstudio
+   75  sudo install r
+   76  sudo apt r
+   77  rstudio
+   78  sudo apt update -qq
+   79  apt list --upgradable
+   80  sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
+   81  sudo apt install --no-install-recommends r-base
+   82  sudo apt install -y r-base-core r-recommended r-base-dev gdebi-core build-essential libcurl4-gnutls-dev libxml2-dev libssl-dev
+   83  sudo apt install --no-install-recommends gdebi-core
+   84  wget https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2025.05.1-513-amd64.deb
+   85  sudo gdebi rstudio-server-2025.05.1-513-amd64.deb
+   86  sudo systemctl start rstudio-server
+   87  sudo systemctl enable rstudio-server
+   88  r-studio
+   89  rstudio
+   90  openssl sha1 R-4.5.2-arm64.pkg
+   91  openssl
+   92  wsl --set-default-version 2
+   93  sudo apt-get update
+   94  sudo apt-get upgrade -y
+   95  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+   96  sudo add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/'
+   97  sudo apt install -y r-base r-base-core r-recommended r-base-dev gdebi-core build-essential libcurl4-gnutls-dev libxml2-dev libssl-dev
+   98  sudo apt autoremove
+   99  sudo apt install -y r-base r-base-core r-recommended r-base-dev gdebi-core build-essential libcurl4-gnutls-dev libxml2-dev libssl-dev
+  100  wget https://rstudio.org/download/latest/stable/server/bionic/rstudio-server-latest-amd64.deb
+  101  sudo gdebi rstudio-server-latest-amd64.deb
+  102  wget https://rstudio.org/download/latest/stable/server/bionic/rstudio-server-latest-amd64.deb
+  103  sudo rstudio-server start
+  104  wget https://download2.rstudio.org/server/rhel8/x86_64/rstudio-server-rhel-2026.01.0-392-x86_64.rpm
+  105  sudo yum install rstudio-server-rhel-2026.01.0-392-x86_64.rpm
+  106  wget https://download2.rstudio.org/server/rhel8/x86_64/rstudio-server-rhel-2026.01.0-392-x86_64.rpm
+  107  sudo yum install rstudio-server-rhel-2026.01.0-392-x86_64.rpm
+  108  sudo install rstudio-server-rhel-2026.01.0-392-x86_64.rpm
+  109  pwd
+  110  sl
+  111  ls
+  112  ls -1
+  113  cd R/
+  114  ls
+  115  cd x86_64-pc-linux-gnu-library/
+  116  ls
+  117  cd 4.5/
+  118  ls
+  119  cd ..
+  120  ls -1
+  121  sudo yum install rstudio-server-rhel-2026.01.0-392-x86_64.rpm
+  122  sudo install rstudio-server-rhel-2026.01.0-392-x86_64.rpm
+  123  install --help
+  124  sudo install yum
+  125  sudo apt yum
+  126  sudo apt install -y yum
+  127  ls
+  128  install rstudio-server-rhel-2026.01.0-392-x86_64.rpm
+  129  install rstudio-server-rhel-2026.01.0-392-x86_64.rpm -T
+  130  install rstudio-server-rhel-2026.01.0-392-x86_64.rpm [-T]
+  131  ls
+  132  rm [-T]
+  133  ls
+  134  rm rstudio-server-2025.05.1-513-amd64.deb 
+  135  rm rstudio-server-rhel-2026.01.0-392-x86_64.rpm
+  136  rm rstudio-server-rhel-2026.01.0-392-x86_64.rpm.1 
+  137  ls
+  138  history
+  139  history t
+  140  history help
+  141  help
+  142  history
+  143  history -anrw
+  144  history -15
+  145  history -1 -50
+  146  history -n 15
+  147  history n 15
+  148  history 15
+  149  history | tail -n 15
+  150  history ! less
+  151  history | less
+  152  ls -1
+  153  cd Documentos/
+  154  cd Bioinformática/
+  155  cd results/
+  156  cd 2026-01-29/
+  157  history > historial
+  158  ls
+  159  history > historial.Qmd
+  160  history > historial.txt
