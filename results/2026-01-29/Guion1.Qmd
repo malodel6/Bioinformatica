@@ -51,7 +51,12 @@ apt install emboss exonerate wget muscle
 | rm a | Eliminar el *archivo* "a" |
 | rm -r a | Eliminar el *directorio* "a" y su contenido |
 | touch a | Crear el archivo vacío "a" o actualizar su fecha de consulta si ya existía |
-
+| ls (-1) | Para ver los archivos en la carpeta o directorio (dispone cada archivo en una fila en vez de todos en una) |
+| history | Enseña el historial de comandos de Bash |
+| history > a | Guarda el historial en un archivo "a" (añadir .txt o .Qmd o alguna otra extensión al final del nombre) |
+| ~ | Sustituye el camino hasta la carpeta de usuario |
+| /mnt/c | Camino hasta el disco C de Windows desde el terminal de Bash (haciedno ls se puede ver el contenido de las carpetas de Windows) |
+| nano | Abre archivos con el programa nano para visualizar su contenido (para salir Ctr+X) |
 ::: {.callout-tip title="Consejo"}
 Amplía la tabla modificando el documento fuente.
 :::
@@ -133,7 +138,7 @@ if [ ! -e aln1.txt ]; then
    # Utilizamos el carácter "\" para que Bash ignore el salto de línea
    # y poder distribuir los argumentos y opciones en más de una línea.
    needle -asequence HumanChr17.fa \
-          -bsequence HumanaSMARCD2.fa \
+          -bsequence HumanSMARCD2.fa \
           -gapopen 15.0 \
           -gapextend 0.5 \
           -auto \
