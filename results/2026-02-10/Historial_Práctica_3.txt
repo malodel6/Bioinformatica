@@ -1,0 +1,474 @@
+    1  sudo apt update
+    2  sudo apt install git build-essential autoconf automake libtool python3 r-base
+    3  pws
+    4  pwd
+    5  cd
+    6  cd descargas
+    7  pwd
+    8  cd ~
+    9  cd~
+   10  cd $HOME
+   11  pwd
+   12  ls
+   13  ls -1
+   14  ls
+   15  cd Documentos/
+   16  cd..
+   17  cd ..
+   18  cd Documentos/
+   19  mkdir Bioinformática
+   20  cd Bioinformática/
+   21  cd ..
+   22  cd Bioinformática/
+   23  pwd
+   24  ls
+   25  ls -1
+   26  mkdir doc
+   27  mkdir data
+   28  mkdir results
+   29  ls-1
+   30  ls -1
+   31  rm guio-es.Qmd
+   32  ls -1
+   33  rm guio-es.Qmd\:Zone.Identifier 
+   34  ls -1
+   35  rm doc
+   36  rm -r doc
+   37  ls -1
+   38  mkdir doc
+   39  ls -1
+   40  cd results/
+   41  mkdir 2026-01-29
+   42  ls
+   43  cd ..
+   44  cd results/
+   45  cd 2026-01-29/
+   46  ls -1 /mnt
+   47  ls -1 /mnt/C
+   48  ls -1 /mnt/c
+   49  ls -1 /mnt/c/Users/mdela/
+   50  ls -1 /mnt/c/Users/mdela/Downloads/
+   51  cp guio-es.Qmd guio-es.Qmd
+   52  ls -1 /mnt/c/Users/mdela/Downloads/guio-es.Qmd 
+   53  ls -1 /mnt/c/Users/mdela/Downloads/
+   54  cp /mnt/c/Users/mdela/Downloads/guio-es.Qmd /home/mdelareina/Documentos/Bioinformática/results/2026-01-29/
+   55  ls
+   56  cp /mnt/c/Users/mdela/Downloads/guio-es.Qmd /home/mdelareina/Documentos/Bioinformática/results/2026-01-29/Guion1.Qmd
+   57  ls
+   58  rm guio-es.Qmd 
+   59  ls
+   60  R
+   61  guio-es.Qmd
+   62  R guio-es.Qmd
+   63  cd ~
+   64  apt install emboss exonerate wget muscle
+   65  y
+   66  apt install emboss exonerate wget muscle
+   67  yes
+   68  ls
+   69  whoami
+   70  apt install emboss exonerate wget muscle
+   71  sudo apt install emboss exonerate wget muscle
+   72  Rstudio
+   73  rstudio
+   74  sudo snap install rstudio
+   75  sudo install r
+   76  sudo apt r
+   77  rstudio
+   78  sudo apt update -qq
+   79  apt list --upgradable
+   80  sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
+   81  sudo apt install --no-install-recommends r-base
+   82  sudo apt install -y r-base-core r-recommended r-base-dev gdebi-core build-essential libcurl4-gnutls-dev libxml2-dev libssl-dev
+   83  sudo apt install --no-install-recommends gdebi-core
+   84  wget https://download2.rstudio.org/server/jammy/amd64/rstudio-server-2025.05.1-513-amd64.deb
+   85  sudo gdebi rstudio-server-2025.05.1-513-amd64.deb
+   86  sudo systemctl start rstudio-server
+   87  sudo systemctl enable rstudio-server
+   88  r-studio
+   89  rstudio
+   90  openssl sha1 R-4.5.2-arm64.pkg
+   91  openssl
+   92  wsl --set-default-version 2
+   93  sudo apt-get update
+   94  sudo apt-get upgrade -y
+   95  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+   96  sudo add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/'
+   97  sudo apt install -y r-base r-base-core r-recommended r-base-dev gdebi-core build-essential libcurl4-gnutls-dev libxml2-dev libssl-dev
+   98  sudo apt autoremove
+   99  sudo apt install -y r-base r-base-core r-recommended r-base-dev gdebi-core build-essential libcurl4-gnutls-dev libxml2-dev libssl-dev
+  100  wget https://rstudio.org/download/latest/stable/server/bionic/rstudio-server-latest-amd64.deb
+  101  sudo gdebi rstudio-server-latest-amd64.deb
+  102  wget https://rstudio.org/download/latest/stable/server/bionic/rstudio-server-latest-amd64.deb
+  103  sudo rstudio-server start
+  104  wget https://download2.rstudio.org/server/rhel8/x86_64/rstudio-server-rhel-2026.01.0-392-x86_64.rpm
+  105  sudo yum install rstudio-server-rhel-2026.01.0-392-x86_64.rpm
+  106  wget https://download2.rstudio.org/server/rhel8/x86_64/rstudio-server-rhel-2026.01.0-392-x86_64.rpm
+  107  sudo yum install rstudio-server-rhel-2026.01.0-392-x86_64.rpm
+  108  sudo install rstudio-server-rhel-2026.01.0-392-x86_64.rpm
+  109  pwd
+  110  sl
+  111  ls
+  112  ls -1
+  113  cd R/
+  114  ls
+  115  cd x86_64-pc-linux-gnu-library/
+  116  ls
+  117  cd 4.5/
+  118  ls
+  119  cd ..
+  120  ls -1
+  121  sudo yum install rstudio-server-rhel-2026.01.0-392-x86_64.rpm
+  122  sudo install rstudio-server-rhel-2026.01.0-392-x86_64.rpm
+  123  install --help
+  124  sudo install yum
+  125  sudo apt yum
+  126  sudo apt install -y yum
+  127  ls
+  128  install rstudio-server-rhel-2026.01.0-392-x86_64.rpm
+  129  install rstudio-server-rhel-2026.01.0-392-x86_64.rpm -T
+  130  install rstudio-server-rhel-2026.01.0-392-x86_64.rpm [-T]
+  131  ls
+  132  rm [-T]
+  133  ls
+  134  rm rstudio-server-2025.05.1-513-amd64.deb 
+  135  rm rstudio-server-rhel-2026.01.0-392-x86_64.rpm
+  136  rm rstudio-server-rhel-2026.01.0-392-x86_64.rpm.1 
+  137  ls
+  138  history
+  139  history t
+  140  history help
+  141  help
+  142  history
+  143  history -anrw
+  144  history -15
+  145  history -1 -50
+  146  history -n 15
+  147  history n 15
+  148  history 15
+  149  history | tail -n 15
+  150  history ! less
+  151  history | less
+  152  ls -1
+  153  cd Documentos/
+  154  cd Bioinformática/
+  155  cd results/
+  156  cd 2026-01-29/
+  157  history > historial
+  158  ls
+  159  history > historial.Qmd
+  160  history > historial.txt
+  161  rm historial
+  162  rm historial.Qmd 
+  163  ls -1
+  164  cd Documentos/Bioinformática/results/
+  165  mkdir 2026-02-02
+  166  ls -1
+  167  cd 2026-02-02/
+  168  t guion02.Qmd
+  169  touch guion02.Qmd
+  170  cd ~
+  171  git config --global core.editor "nano -w"
+  172  git
+  173  git --version
+  174  apt install git
+  175  update git
+  176  sudo apt install git
+  177  git config --global core.editor "nano -w"
+  178  git config --global init.defaultBranch soca
+  179  git config --list
+  180  git config --show
+  181  git init
+  182  git status
+  183  git config --global init.defaultBranch main
+  184  git config --list
+  185  git status
+  186  git add .bash_history 
+  187  git add .bash_logout
+  188  git add .bashrc
+  189  git add .cache/
+  190  git ad
+  191  git status
+  192  git add Documentos/
+  193  git add R/
+  194  git status
+  195  git add .gitconfig 
+  196  git add .lesshst 
+  197  git add .local/
+  198  git add .motd_shown 
+  199  git add .profile 
+  200  git add .sudo_as_admin_successful 
+  201  git add .wget-hsts 
+  202  git status
+  203  git help
+  204  git commit "Recién iniciada la práctica. Creado el repositorio"
+  205  git commit -m "Recién iniciada la práctica. Creado el repositorio"
+  206  git config --global user.name "malodel6"
+  207  git config --global user.email "malodel6@alumni.uv.es"
+  208  git commit -m "Recién iniciada la práctica. Creado el repositorio"
+  209  git log
+  210  git rm
+  211  git add
+  212  git help
+  213  git rm --cached
+  214  git rm --cached .bash_logout 
+  215  git rm --cached R/
+  216  get status
+  217  git status
+  218  git rm --cached R/
+  219  git rm --cached R/x86_64-pc-linux-gnu-library/4.5/
+  220  git rm --cached R/x86_64-pc-linux-gnu-library/4.5/evaluate/
+  221  git status
+  222  cd Documentos/Bioinformática/
+  223  git config --global init.defaultBranch Main
+  224  git config --list
+  225  git init
+  226  git status
+  227  git add results/
+  228  git status
+  229  git add data/
+  230  git add doc/
+  231  git status
+  232  git commit -m "Después de crear el repositorio, al inicio de la práctica"
+  233  git status
+  234  git log
+  235  .gitignore
+  236  touch .gitignore
+  237  ls
+  238  git status
+  239  nano .gitignore
+  240  cd results/2026-01-29/
+  241  ls
+  242  nano Guion1.Qmd
+  243  git remote add origin https://github.com/malodel6/Bioinformatica.git
+  244  git push -u origin Main
+  245  malodel6
+  246  git push -u origin Main
+  247  git push
+  248  git push --set-upstream origin Main
+  249  cd ..
+  250  git push -u origin Main
+  251  history
+  252  man ssh-keygen
+  253  ssh-keygen -t ed25519 -C "malodel6@alumni.uv.es"
+  254  ls
+  255  cd ~
+  256  ls
+  257  ls .ssh
+  258  cat .ssh/id_ed25519.pub
+  259  git push -u origin Main
+  260  cd Documentos/Bioinformática/
+  261  git push -u origin Main
+  262  git remote add origin git@github.com:malodel6/Bioinformatica.git
+  263  git remote rm origin
+  264  git remote add origin git@github.com:malodel6/Bioinformatica.git
+  265  git push -u origin Main
+  266  git status
+  267  git add results/2026-02-02/guion02.Qmd 
+  268  git status
+  269  git push -u origin Main
+  270  git push
+  271  git config --list
+  272  git fetch
+  273  git status
+  274  cd Documentos/Bioinformática/results/2026-02-02/
+  275  ls
+  276  nano guion02.Qmd 
+  277  cd ..
+  278  ls -1
+  279  rstudio
+  280  bin 
+  281  /bin
+  282  /bin/guion2.Qmd
+  283  cd Documentos/Bioinformática/results/2026-01-29/
+  284  ls -lh
+  285  ls
+  286  cd ~
+  287  apt install emboss exonerate wget muscle
+  288  sudo apt install emboss exonerate wget muscle
+  289  cd Documentos/Bioinformática/results/2026-01-29/
+  290  cd ~
+  291  /bin/needle
+  292  cd Documentos/Bioinformática/results/2026-01-29/
+  293  if [ ! -e aln1.txt ]; then if [ ! -e HumanSMARCD2.fa ]; then wget -O HumanSMARCD2.fa https://www.ebi.ac.uk/ena/browser/api/fasta/AAI36323.1fi cd Documentos/Bioinformática/results/2026-01-29/ if [ ! -e aln1.txt ]; then if [ ! -e HumanSMARCD2.fa ]; then wget -O HumanSMARCD2.fa https://www.ebi.ac.uk/ena/browser/api/fasta/AAI36323.1fi cd Documentos/Bioinformática/results/2026-01-29/; wad; awd; aw; da; wd; asa; vc a; wd; 1
+  294  git status
+  295  cd Documentos/Bioinformática/
+  296  cd status
+  297  git push
+  298  git status
+  299  mnt/
+  300  ls -1 mnt/
+  301  ls -1 /mnt/c/Users/mdela/Downloads/
+  302  ls
+  303  ls -1
+  304  git status
+  305  git add results/2026-01-29/Guion1.Qmd 
+  306  git add results/2026-01-29/Guion1.html
+  307  git add results/2026-01-29/aln1.txt 
+  308  git add results/2026-01-29/aln2.txt 
+  309  git status
+  310  git commit "Después de realizar pruebas de alineamientos con water y needle"
+  311  git commit -m "Después de realizar pruebas de alineamientos con water y needle"
+  312  git push
+  313  cp /mnt/c/Users/mdela/Downloads/guion-es.Qmd /home/mdelareina/Documentos/Bioinformática/results/
+  314  cd Documentos/Bioinformática/results/
+  315  ls
+  316  mkdir 2026-02-10
+  317  ls
+  318  cd ~
+  319  cp /mnt/c/Users/mdela/Downloads/guio-es.Qmd /home/mdelareina/Documentos/Bioinformática/results/2026-02-10/guion3.Qmd
+  320  cd Documentos/Bioinformática/results/2026-02-10/
+  321  ls
+  322  cd 
+  323  wget fastp
+  324  wget http://opengene.org/fastp/fastp
+  325  chmod a+x ./fastp
+  326  git clone https://github.com/lh3/bwa.git
+  327  cd bwa; make
+  328  ./bwa index ref.fa
+  329  cd 
+  330  ./bwa index ref.fa
+  331  cd bwa
+  332  ./bwa index ref.fa
+  333  ./bwa mem ref.fa read-se.fq.gz | gzip -3 > aln-se.sam.gz
+  334  ./bwa index ref.fa
+  335  ls
+  336  make
+  337  cd bwa; make
+  338  cd 
+  339  cd bwa; make
+  340  ./bwa mem ref.fa read1.fq read2.fq | gzip -3 > aln-pe.sam.gz
+  341  apt install samtool
+  342  cd 
+  343  apt install samtool
+  344  sudo apt install samtool
+  345  sudo apt install samtools
+  346  sudo apt install htslib
+  347  sudo apt install bcftools
+  348  ls
+  349  sudo apt install samtools
+  350  cd samtools-1.x
+  351  cd samtools-1.23
+  352  ls
+  353  .configure
+  354  ./configure
+  355  sudo ./configure
+  356  ./configure
+  357  cd 
+  358  ls
+  359  cd samtools-1.23
+  360  ls -lh
+  361  cd ..
+  362  rm -r samtools-1.23
+  363  ls
+  364  rm -r htslib-1.23
+  365  rm -r bcftools-1.23
+  366  ls
+  367  rm -r samtools-1.23.tar.bz2\:Zone.Identifier 
+  368  rm -r bcftools-1.23.tar.bz2\:Zone.Identifier 
+  369  rm -r htslib-1.23.tar.bz2\:Zone.Identifier 
+  370  ls
+  371  wget https://github.com/samtools/samtools/releases/download/1.23/samtools-1.23.tar.bz2
+  372  ls
+  373  extract
+  374  sudo apt install extract
+  375  ls
+  376  extract samtools-1.23.tar.bz2 
+  377  ls
+  378  cd samtools-1.23/
+  379  ls
+  380  cd ..
+  381  ls
+  382  rm -r samtools-1.23
+  383  ls
+  384  samtools-1.23.tar.bz2
+  385  tar
+  386  tar -xf samtools-1.23.tar.bz2 
+  387  ls
+  388  cd samtools-1.23/
+  389  .configure/ --prefix=~/ 
+  390  .configure/ --prefix=~
+  391  .configure/ --prefix=home/mdelareina
+  392  .configure/ --prefix=/~
+  393  .configure/ --prefix=/home/mdelareina
+  394  ls
+  395  ./configure --prefix=/~
+  396  wget https://github.com/samtools/bcftools/releases/download/1.23/bcftools-1.23.tar.bz2
+  397  ls
+  398  rm -r bcftools-1.23.tar.bz2 
+  399  cd ..
+  400  wget https://github.com/samtools/bcftools/releases/download/1.23/bcftools-1.23.tar.bz2
+  401  ls
+  402  tar -xf bcftools-1.23.tar.bz2 
+  403  wget https://github.com/samtools/htslib/releases/download/1.23/htslib-1.23.tar.bz2
+  404  tar -xf htslib-1.23.tar.bz2 
+  405  ls
+  406  rm -r bcftools-1.23.tar.bz2 
+  407  rm -r samtools-1.23.tar.bz2 
+  408  rm -r htslib-1.23.tar.bz2 
+  409  ls
+  410  cd htslib-1.23/
+  411  ./configure --prefix=/~
+  412  cd ..
+  413  ls
+  414  cd bcftools-1.23/
+  415  ./configure --prefix=/~
+  416  make
+  417  make install
+  418  export PATH=/~
+  419  make install
+  420  ls
+  421  cd ..
+  422  ls
+  423  cd samtools-1.23/
+  424  make install
+  425  sudo make install
+  426  cd ..
+  427  cd htslib-1.23/
+  428  make
+  429  sudo make install
+  430  cd ..
+  431  cd bcftools-1.23/
+  432  make
+  433  sudo make install
+  434  cd..
+  435  cd ..
+  436  cd Documentos/Bioinformática/results/2026-02-10/
+  437  f [ ! -e DRR025089_1.fastq.gz ]; then
+  438  cd Documentos/Bioinformática/results/2026-02-10/
+  439  if [ ! -e DRR025089_1.fastq.gz ]; then
+   wget -o /dev/null         ftp://ftp.sra.ebi.ac.uk/vol1/fastq/DRR025/DRR025089/DRR025089_1.fastq.gz; fi
+  440  if [ ! -e DRR025089_2.fastq.gz ]; then    wget -o /dev/null         ftp://ftp.sra.ebi.ac.uk/vol1/fastq/DRR025/DRR025089/DRR025089_2.fastq.gz; fi
+  441  ls
+  442  gunzip -c DRR025089_1.fastq.gz 
+  443  ls
+  444  gunzip -c DRR025089_1.fastq.gz | wc DRR025089_1.fastq.gz 
+  445  gunzip -c DRR025089_1.fastq.gz | wc -l
+  446  if [ ! -e referencia.fa ]; then    wget -o /dev/null -O referencia.fa         https://www.ebi.ac.uk/ena/browser/api/fasta/GCA_042137995.2 ; fi
+  447  zless DRR025089_1.fastq.gz 
+  448  ls
+  449  zless referencia.fa 
+  450  wc -l referencia.fa 
+  451  wc referencia.fa 
+  452  if [ ! -e fastp.html ]; then
+   fastp -i DRR025089_1.fastq.gz          -o DRR025089_1_clean.fastq          -I DRR025089_2.fastq.gz          -O DRR025089_2_clean.fastq          --merge          --merged_out DRR025089_m_clean.fastq; fi
+  453  fastp
+  454* if [ ! -e fastp.html ]; then
+   # Si "fastp" está en la carpeta actual y  no en el PATH, escribe "./fastp"
+   # en lugar de "fastp".
+   fastp -i DRR025089_1.fastq.gz \
+         -o DRR025089_1_clean.fastq \
+         -I DRR025089_2.fastq.gz \
+         -O DRR025089_2_clean.fastq \
+         --merge \
+         --merged_out DRR025089_m_clean.fastq
+fi
+  455  ./fastp
+  456  ./fastp -h
+  457  ./~/fastp
+  458  ./fastp -i DRR025089_1.fastq.gz          -o DRR025089_1_clean.fastq          -I DRR025089_2.fastq.gz          -O DRR025089_2_clean.fastq          --merge          --merged_out DRR025089_m_clean.fastq
+  459  ./fastp
+  460  ~/fastp
+  461  grep ">" referencia.fa 
+  462  ~/fastp -h
+  463  history > Historial_Práctica_3.txt
