@@ -63,7 +63,6 @@ plot(mt_upgma)
 ```
 
 ·*plot.phylo() para saber qué opciones de representación gráfica tienes.*
-```{r}
 plot(x, type = "phylogram", use.edge.length = TRUE,
      node.pos = NULL, show.tip.label = TRUE,
      show.node.label = FALSE, edge.color = NULL, edge.width
@@ -75,8 +74,6 @@ plot(x, type = "phylogram", use.edge.length = TRUE,
      NULL, tip.color = par("col"), plot = TRUE, rotate.tree
      = 0, open.angle = 0, node.depth = 1, align.tip.label =
      FALSE, ...)
-```
-
 
 ·*¿Para qué sirven las funciones add.scale.bar() y axisPhylo()?*
 add.scale.bar() This function adds a horizontal bar giving the scale of the branch lengths to a plot of a phylogenetic tree on the current graphical device. axisPhylo() This function adds a scaled axis on the side of a phylogeny plot. 
@@ -332,7 +329,26 @@ plot(mt_ml, align.tip.label = TRUE, main = 'Árbol más verosímil')
 
 *Ejercicio*
 ·*El árbol no está enraizado. Como las secuencias no son todas de la misma época, utiliza rtt() para situar la raíz en el punto más compatible con la hipótesis de reloj molecular.*
+```{r}
+#| cache: true
+#| fig-height: 10
+fechas36 <- fechas[names(mtdna36)]
+mt_ml_rtt <- rtt(mt_ml$tree, tip.dates = fechas36, objective = 'rms')
+plot(mt_ml_rtt, align.tip.label = TRUE)
+```
+
 ·*¿Podrías obtener el árbol más verosímil para el subconjunto de secuencias del género Homo?*
+```{r}
+#| cache: true
+#| fig-height: 10
+#Teníamos creado ya el subconjunto de los datos del género Homo en mtdna28
+modelosHomo <- modelTest(mtdna28, control = pml.control(trace = 0))
+mt_ml_homo <- pml_bb(modelosHomo,
+                ratchet.par = ratchet.control(iter = 5L, maxit = 10L),
+                control = pml.control(trace = 0))
+plot(mt_ml_homo, align.tip.label = TRUE, main = 'Árbol más verosímil del género Homo')
+```
+
 
 ## Con datación de puntas (*tip dating*)
 
@@ -352,13 +368,24 @@ mt_ml_clock
 
 ```{r}
 #| cache: true
+#| fig-height: 10
 plot(mt_ml_clock, align.tip.label = TRUE)
 ```
 
 *Ejercicio*
 *¿Cuál es la tasa de mutación global estimada?*
+Rate: 1.15857e-08
 *¿En qué unidades está expresada?*
+Por lo general, sustituciones por nucleótido por año.
 *¿Cuánto tiempo dice el árbol que divergimos de los chimpancés? (Puedes usar la función cophenetic(), puesto que en el árbol datado las longitudes de las ramas están en años).*
+```{r}
+#| cache: true
+Cofeneticas <- cophenetic(mt_ml_clock$tree)
+modernos2 <- startsWith(colnames(Cofeneticas), 'H.s.modern')
+chimpances2 <- startsWith(colnames(Cofeneticas), 'P.troglodytes')
+mean(distMat[modernos2, chimpances2])
+```
+
 
 ## Estimación de edades
 
@@ -368,8 +395,9 @@ Esta información se la proporcionamos a la función estimate.dates() mediante u
 
 ```{r}
 #| cache: true
-mt_ml_rtt <- rtt(mt_ml$tree, fechas36)
-plot(mt_ml_rtt, align.tip.label = TRUE)
+#| fig-height: 10
+mt_ml_rtt2 <- rtt(mt_ml$tree, fechas36)
+plot(mt_ml_rtt2, align.tip.label = TRUE)
 nodelabels()
 ```
 
@@ -377,11 +405,12 @@ Como suele suceder, la raíz (en los árboles enraizados) es el nodo que sigue a
 
 ```{r}
 #| cache: true
+#| fig-height: 10
 fechasNodos <- c(fechas36, -6500000, rep(NA, 34))
-fechasEstimadas <- estimate.dates(mt_ml_rtt, fechasNodos)
-tasaEstimada <- estimate.mu(mt_ml_rtt, fechasNodos)
+fechasEstimadas <- estimate.dates(mt_ml_rtt2, fechasNodos)
+tasaEstimada <- estimate.mu(mt_ml_rtt2, fechasNodos)
 # Creamos una copia del árbol...
-mt_ml_años <- mt_ml_rtt
+mt_ml_años <- mt_ml_rtt2
 # ...y actualizamos las longitudes de sus ramas como la resta
 # entre las fechas de los nodos que conectan:
 mt_ml_años$edge.length <- fechasEstimadas[mt_ml_años$edge[,2]] -
