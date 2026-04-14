@@ -168,8 +168,8 @@ result <- 'result=sequence&'
 query  <- 'query=tax_tree(7215) AND description="alcohol dehydrogenase"&'
 fields <- 'fields=tax_id,scientific_name,first_public,base_count&'
 limit  <- 'limit=0'
-URL <- paste0(portal, result, query, fields, limit)
-curl_download(URLencode(URL), destfile = 'z3.txt')
+URL2 <- paste0(portal, result, query, fields, limit)
+curl_download(URLencode(URL2), destfile = 'z3.txt')
 ```
 
 
