@@ -1,0 +1,119 @@
+---
+title: "Practica 10. Ensamblaje de genomas"
+author: "Manuel López de la Reina Gisbert"
+format: html
+---
+
+## Objetivo
+
+Ensamblar el genoma de un eucariota diploide con lecturas de PacBio de alta fidelidad.
+
+## Datos
+
+Vamos a usar lecturas HiFi generadas por Rabanal et al. (2022) de un único individuo de la planta Arabidopsis thaliana, ecotipo Columbia (Col-0), con la tecnología SMRT de PacBio (proyecto PRJEB50694). 
+
+## Revisión de los datos
+
+Los datos están en formato FASTA porque contienen sólo lecturas de alta calidad, y hifiasm no utiliza la información de las calidades de cada base. El archivo está comprimido. Antes de empezar el ensamblaje deberíamos tener una idea de la cantidad de datos que tenemos. Si lo necesitas, utiliza una inteligencia artificial para responder las preguntas siguientes y anota en un bloque de código las órdenes utilizadas. Puedes hacerlo con instrucciones de Bash o de R, pero R necesitará cargar en memoria el archivo entero, lo que no sería muy práctico si se tratara de un archivo 10 o 50 veces mayor.
+
+*Ejercicio 1*
+-*¿Cuántas secuencias contiene el archivo?*
+Como está en formato fasta, cada secuencia en el archivo empezará por el caracter ">". Por tanto, empleando el comando zgrep (z porque el archivo está comprimido) podemos especificar que cuente las líneas que comiencen por este caracter, obteniendo el nº de secuencias que contiene. Grep mira línea por línea las que empiezan por un determinado caracter.
+```{bash}
+zgrep -c "^>" ../../data/At4.10.fa.gz
+```
+Por tanto, podemos concluir que este archivo tiene 13812 secuencias.
+
+-*¿Qué longitudes mínima, media y máxima tienen las secuencias?*
+```{bash}
+zcat ../../data/At4.10.fa.gz | awk '!/^>/ {len=length($0); sum+=len; if(min==""){min=max=len}; if(len<min) min=len; if(len>max) max=len; count++} END {print "Mínima:", min, "Media:", sum/count, "Máxima:", max}'
+```
+La barra vertical (|) envía el resultado de la función zcat al programa awk.
+La explicación del comando sería la siguiente:
+!/^>/: Selecciona solo la línea de la secuencia (la que comienza por el símbolo ">").
+length($0): Calcula la longitud de esa línea.
+sum/count: Calcula el promedio al final (END).
+min/max: Actualiza los valores mínimo y máximo según recorre el archivo.
+
+-*¿Cuál es el número total de bases?*
+```{bash}
+zcat ../../data/At4.10.fa.gz | awk '!/^>/ {sum+=length($0)} END {print sum}'
+```
+250599484 bases. Zcat vuelve a contar los caracteres en las líneas que empiezan por ">". Sum += length($0) va sumando acumulativamente todos los caracteres de esas líneas y lo introduce en la variable sum, al final mostrándolo con la función print.
+
+-*Si se estimara que el genoma a ensamblar fuera de sólo 19 millones de bases, ¿cuál sería la cobertura esperada?*
+```{r}
+Cobertura = 250599484/19000000
+print(Cobertura)
+```
+Este valor de cobertura implica que, en término medio, cada nt ha sido leído o secuenciado unas 13 veces. No es un mal valor, pero sí que sería mejor que fuese superior a 30 o incluso 60, ya que es muy probable que algunos nt se hayan leído más que 13 veces y que en otros sitios solo se haya leído una vez, solo uno de los cromosomas (estamos en una especie diploide).
+
+## Ensamblaje
+
+El programa hifiasm produce varios archivos de salida. Para tener la carpeta de trabajo ordenada, es recomendable crear un subcarpeta donde poder guardarlos. Si fuéramos a probar más de una estrategia de ensamblado, guardaríamos los resultados de cada intento en una carpeta diferente, que podríamos nombrar asm1, asm2, etc. Aunque sólo realicemos un ensamblaje, crearemos la carpeta asm1 para guardar los resultados en ella.
+
+```{bash}
+# Con la ejecución condicional nos ahorramos algún mensaje de error:
+if [ ! -d asm1 ]; then mkdir asm1; fi
+```
+
+El ensamblaje de estas lecturas puede durar unos minutos. No queremos tener que ejecutarlo cada vez que compilamos el documento de Quarto. Tenemos dos opciones: o bien usamos la directriz #| cache: true al principio del bloque de código o bien controlamos directamente la ejecución condicional con Bash. Si usamos el método que ofrece Quarto, aparecerá una nueva carpeta que guarda resultados previos y que estaría bien incluir en el repositorio de Git. Yo prefiero usar Bash:
+
+```{bash}
+#| cache: true
+export PATH=$PATH:~/bin/hifiasm
+if [ ! -e asm1/At4.bp.p_ctg.gfa ]; then   #La ! indica lo opuesto a lo que aparece a continuación, y la e es existe, por lo que lo que decimos en esta orden es "si no existe asm1/At4.bp.p_ctg.gfa"
+   hifiasm -o asm1/At4 -t 2 -f 0 ../../data/At4.10.fa.gz 2> asm1/hifiasm.log
+fi
+```
+
+Las opciones significan lo siguiente:
+
+    -o asm1/At4: usa el prefijo asm1/At4 para los archivos de salida.
+    -t 2: usa dos procesadores. Por defecto usaría uno.
+    -f 0: inhabilita el uso de un filtro de Bloom (Melsted and Pritchard 2011) durante la corrección de errores, que ocuparía 16 Gb de memoria.
+    ../../data/At4.10.fa.gz: archivo con los datos de partida.
+    2> asm1/hifiasm.log: guarda los numerosos mensajes que hifiasm envía al error estándar en un archivo asm1/hifiasm.log. Esto evita que esos mensajes se acumulen en el informe HTML.
+
+*Ejercicio 2*
+*Consulta la ayuda de hifiasm (hifiasm -h) y contesta las preguntas siguientes:*
+  *1.¿Los parámetros corresponden al ensamblaje de un genoma haploide o diploide?*
+    Con la opción --n-hap devuelve un número entero que se corresponde con el número de haplotipos, por lo que podemos especificar si se trata de un genoma haploide o diploide. Por defecto el programa considera que es diploide.
+     --n-hap      INT
+                 number of haplotypes [2]
+                 
+  *2.¿Qué nivel de eliminación de duplicaciones hemos aplicado? (El paso de eliminar duplicaciones sirve para que las zonas de alta heterocigosidad no sean ensambladas como contigs diferentes).*
+    Por defecto, el programa aplica un nivel 3, agresivo, ya que estamos empleando un archivo sin extraer (unzip).
+    -l INT       purge level. 0: no purging; 1: light; 2/3: aggressive [0 for trio; 3 for unzip]
+    
+  *3.Si tuvieramos lecturas ultra-largas, ¿con qué opción o argumento añadiríamos esa información?*
+  --ul FILEs   file names of Ultra-Long reads [r1.fq,r2.fq,...]
+
+## Evaluación del resultado
+
+*Ejercicio 3*
+*Consulta la descripción de los archivos de salida que encontrarás en este enlace y contesta las preguntas siguientes:*
+  *1.¿Dónde están las secuencias que componen el ensamblaje?*
+  `prefix`.r_utg.gfa: haplotype-resolved raw unitig graph. This graph keeps all haplotype information.
+  En nuestro caso, este archivo es el At4.bp.r_utg.gfa, que contendría toda la información de las secuencias sin procesar, las que componen el ensamblaje original.
+  
+  *2.En los archivos .gfa, ¿qué son las líneas que empiezan por ‘A’?*
+  Hifiasm genera líneas comenzando por A incluyendo información de las lecturas que se usan para cosntruir cóntigos.
+  
+  *3.¿Qué información tiene los archivos .bed?*
+  Estos archivos contienen la información de las coordenadas de las regiones de más baja calidad.
+  
+  *4.¿Cuál es la cobertura media estimada de las secuencias homocigotas?*
+  En los histogramas que nos hace el log, el pico de cobertura aparece en torno a 12, y como aparece solo un pico, sería una muestra homocigota.
+  
+  *5.¿Y la de las heterocigotas?*
+  No hay ningún segundo pico, por lo que implicaría que es homocigota completamente en todas sus posiciones, lo que no es de extrañar porque es una planta y puede sufrir autofecundación.
+  
+Los ensamblajes primario y por haplotipos se presentan en formato GFA. Para extraer las secuencias en formato FASTA podemos usar el pequeño script siguiente, en lenguaje AWK, desde el terminal de Bash:
+```{bash}
+awk '(/^S/){print ">" $2 "\n" $3}' asm1/At4.bp.p_ctg.gfa > asm1/At4.fa
+```
+
+# Calidad del ensamblaje
+
+Para obtener las estadísticas del ensamblaje utilizaremos el programa compleasm (Huang and Li 2023), que no está instalado en el ordenador virtual. Está programado en Python y depende del módulo pandas de Python. En WSL, este módulo o paquete probablemente pueda instalarse con apt install python3-pandas.
