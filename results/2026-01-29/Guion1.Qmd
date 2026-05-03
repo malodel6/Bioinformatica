@@ -56,7 +56,7 @@ apt install emboss exonerate wget muscle
 | history | Enseña el historial de comandos de Bash |
 | history > a | Guarda el historial en un archivo "a" (añadir .txt o .Qmd o alguna otra extensión al final del nombre) |
 | ~ | Sustituye el camino hasta la carpeta de usuario |
-| /mnt/c | Camino hasta el disco C de Windows desde el terminal de Bash (haciedno ls se puede ver el contenido de las carpetas de Windows) |
+| /mnt/c | Camino hasta el disco C de Windows desde el terminal de Bash (haciendo ls se puede ver el contenido de las carpetas de Windows) |
 | nano | Abre archivos con el programa nano para visualizar su contenido (para salir Ctr+X) |
 ::: {.callout-tip title="Consejo"}
 Amplía la tabla modificando el documento fuente.
@@ -194,6 +194,11 @@ documento. Por eso, no hemos condicionado la ejecución.
 ## Desafío
 
 ¿Cómo puedes enviar el resultado de `exonerate` a un archivo?
+
+```{bash}
+exonerate --model est2genome HumanSMARCD2.fa HumanChr17.fa > ResultadoExonerate.txt
+```
+
 :::
 
 # Apéndice. Alineamientos múltiples
@@ -210,7 +215,7 @@ if [ ! -e PF00009.fa ]; then
 fi
 
 if [ ! -e PF00009.afa ]; then
-   muscle -align PF00009.fa -output PF00009.afa
+   muscle -in PF00009.fa -out PF00009.afa
 fi
 ```
 

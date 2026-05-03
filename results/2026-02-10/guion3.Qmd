@@ -90,7 +90,9 @@ fi
 :::{.callout-note icon=false}
 ## Preguntas
 - ¿Crees que deberíamos guardar los archivos descargados en `../../data`?
+
 Sería conveniente, ya que así podemos hacer diversos análisis refiriéndonos al mismo archivo, ya además si ocupan mucho mejor que estén en una carpeta separada para que si alguien quiere leer solo los resultados, no hace falta que se descargue los archivos de datos.
+
 - ¿Cómo podrías guardar los mensajes de `wget` en un archivo?
 - ¿De cuántas secuencias diferentes se compone este genoma de referencia?
 :::
@@ -99,7 +101,7 @@ Sería conveniente, ya que así podemos hacer diversos análisis refiriéndonos 
 
 ```{bash}
 if [ ! -e fastp.html ]; then
-   # Si "fastp" está en la carpeta actual y  no en el PATH, escribe "./fastp"
+   # Si "fastp" está en la carpeta actual y no en el PATH, escribe "./fastp"
    # en lugar de "fastp".
    ~/fastp -i DRR025089_1.fastq.gz \
          -o DRR025089_1_clean.fastq \
@@ -140,7 +142,7 @@ if [ ! -e DRR025089.bam ]; then
          if [ ! -e referencia.fa.bwt ]; then
             bwa index referencia.fa
          fi
-         ~/bwa mem -M -R '@RG\tID:DRR025089\tSM:SAMD00022947' \
+         bwa mem -M -R '@RG\tID:DRR025089\tSM:SAMD00022947' \
                  -o DRR025089.sam \
                  referencia.fa \
                  DRR025089_1_clean.fastq \
@@ -216,6 +218,7 @@ samtools tview DRR025089.bam referencia.fa
 # Identificación de variantes
 
 ```{bash}
+2> /dev/null
 if [ ! -e DRR025089.vcf ]; then
    freebayes -p 1 -f referencia.fa DRR025089.bam > DRR025089.vcf
 fi

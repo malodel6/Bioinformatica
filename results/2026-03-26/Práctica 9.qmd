@@ -1,18 +1,16 @@
 ---
-title: "Práctica 9"
+title: "Práctica 9. Reconstrucción filogenética"
 author: "Manuel López de la Reina Gisbert"
 format: 
   html: 
     embed-resources: true
 ---
-
-### Práctica 9
-
 ## Ejercicio 1
 
 # Leer los datos en R
 
 ```{r}
+#| cache: true
 library(phangorn)
 mtdna <- read.phyDat('mtDNA.fasta', format = 'fasta')
 glance(mtdna)
@@ -25,12 +23,14 @@ glance(mtdna)
 Evaluar los 92 modelos posibles puede llevar un rato…
 
 ```{r}
+#| cache: true
 modelos <- modelTest(mtdna, control = pml.control(trace = 0))
 ```
 
 Si tienes más de un procesador (y si tienes el paquete parallel instalado), puedes pedirle que los use:
 
 ```{r}
+#| cache: true
 modelos <- modelTest(mtdna, control = pml.control(trace = 0),
                      multicore = TRUE, mc.cores = 2)
 ```
@@ -39,6 +39,7 @@ Si no has tenido paciencia para dejar que termine la búsqueda, puedes usar el m
 
 El modelo con menor valor de BIC es TIM2+G(4)+I. Especifica que aplica una Gamma con 4 categorías. La I añade una categoría de la proporción de sitios invariables.
 ```{r}
+#| cache: true
 fit <- as.pml(modelos, 'BIC')
 show(fit)
 ```
@@ -51,6 +52,7 @@ Este objeto fit en el que lo introducimos se puede usar después porque tiene es
 La función dist.ml() de phangorn solo permite usar distancias de Juke Cantor y de Felsenstein 1981 con ADN. Para usar otros modelos, debemos usar la función dist.dna() del paquete ape (automáticamente cargado con phangorn), que se aplica a objetos de clase DNAbin. Por eso, usamos la función as.DNAbin() para presentarle a dist.dna() los datos en el formato adecuado. En cualquier caso, dist.dna() tampoco implementa todos los modelos.
 
 ```{r}
+#| cache: true
 #| fig-width: 5      #Hacer el árbol más bonito y los nombres visibles
 #| fig-height: 10 
 mt_nj    <-    NJ(dist.dna(as.DNAbin(mtdna), model = 'TN93', gamma = 0.93))
@@ -72,6 +74,7 @@ Porque los árboles generados por NJ no se representan enraizados por lo general
 # Podemos enraizar el árbol
 
 ```{r}
+#| cache: true
 #| fig-width: 5
 #| fig-height: 10 
 enraizado <- root(mt_nj, 'G.gorilla_D38114')
@@ -92,6 +95,7 @@ veros <- pml_bb(fit,
 El objeto veros, de clase pml, contiene el árbol (veros$tree), además de los parámetros optimizados del modelo. Podemos enraizar el árbol usando al gorila como outgroup:
 
 ```{r}
+#| cache: true
 #| fig-width: 5
 #| fig-height: 10 
 mt_ml <- root(veros$tree, 'G.gorilla_D38114')
@@ -104,6 +108,7 @@ Como estamos creando un midpoint para enraizarlo, realmente introduce el nodo 43
 También podemos extraer un subárbol para visualizarlo mejor. Con nodelabels() identifico fácilmente cual es el nodo en el que quiero recortar el árbol:
 
 ```{r}
+#| cache: true
 #| fig-width: 5
 #| fig-height: 10 
 homo <- extract.clade(mt_ml, 62)
@@ -115,6 +120,7 @@ plot(midpoint(homo))
 Sabiendo que algunas secuencias dejaron de evolucionar hace tiempo (mira el apéndice), podemos intentar calibrar las tasas de sustitución con esta información. Para ello necesitamos un vector de fechas con nombres, donde cada fecha lleva el nombre de la secuencia a la que corresponde. Podemos dar el valor 0 a todas las secuencias contemporáneas y valores negativos, en años, a las secuencias arcaicas.
 
 ```{r}
+#| cache: true
 fechas <- c(0, 0, 0, 0, 0, 0, 0, 0, 0,
               -400000,
               -39000, -50000, -110000, -110000,
@@ -137,6 +143,7 @@ fit_td <- pml_bb(mtdna, model = 'TIM2+G(4)+I', method = 'tipdated',
 Con tipdated obligamos a que el árbol sea ultramétrico, respetando las edades
 
 ```{r}
+#| cache: true
 #| fig-width: 5
 #| fig-height: 10 
 plot(fit_td)
@@ -145,6 +152,7 @@ plot(fit_td)
 Para estimar se puede emplear estimate.mu() y estimate.dates().
 
 ```{r}
+#| cache: true
 estimate.mu(mt_ml, node.dates = fechas)
 ```
 

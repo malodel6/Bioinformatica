@@ -180,5 +180,5 @@ con la local", respectivamente. Después de `git fetch`, puede comprobar si ha
 habido cambios en el remoto con `git status`.
 
 
-#Notas
-Se puede crear un historial de versiones con git al ir ejecutando commits, y se puede volver a una versión anterior por si cometemos algún error. También se pueden crear diferentes ramas, aunque en nuestro caso no lo vamos a usar, y se puede tener activa solo una rama, mostrándose una sola en git (la activa se mostraria con el *)
+# Notas
+Se puede crear un historial de versiones con git al ir ejecutando commits, y se puede volver a una versión anterior por si cometemos algún error. También se pueden crear diferentes ramas, aunque en nuestro caso no lo vamos a usar, y se puede tener activa solo una rama, mostrándose una sola en git (la activa se mostraría con el *)

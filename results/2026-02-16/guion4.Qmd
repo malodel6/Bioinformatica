@@ -116,7 +116,7 @@ Habiendo visto las opciones, decidimos descargar el genoma y la anotación funci
 de una de ellas, por ejemplo GCA_022059095.1.
 
 ```{bash}
-if [ ! -e ncbi_data/data/GCA_022059095.1/genomic.gff ]; then
+if [ ! -e ncbi_dataset/data/GCA_022059095.1/genomic.gff ]; then
    if [ ! -e ncbi_dataset.zip ]; then
       ~/bin/datasets download genome accession GCA_022059095.1 --include genome,gff3
    fi
@@ -205,7 +205,7 @@ resumen <- data.frame(
    tipo       = 'CDS',
    número     = nrow(cds),
    long.Media = mean(cds$longitud),
-   long.SD    = sd(cds$longitud),
+   long.SD    = sd(cds$longitud)
 )
 ```
 
@@ -257,8 +257,7 @@ resumen <- data.frame(
 kable(resumen,
       col.names = c('Tipo', 'Número', 'Longitud Media',
                     'Desviación estándar'),
-      row.names = FALSE) %>% 
-   kable_styling(full_width = FALSE)
+      row.names = FALSE)
 ```
 
 Las operaciones de agrupar y resumir se pueden hacer también con funciones
@@ -281,8 +280,7 @@ resumen <- gff %>% group_by(type) %>% summarise(
 kable(resumen,
       col.names = c('Tipo', 'Número', 'Longitud Media',
                     'Desviación estándar'),
-      row.names = FALSE) %>%
-   kable_styling(full_width = FALSE)
+      row.names = FALSE)
 ```
 
 :::{.callout-note icon=false}
@@ -493,7 +491,7 @@ gene$gene_biotype <- sapply(atributos2, '[', 'gene_biotype')
 gene$locus_tag    <- sapply(atributos2, '[', 'locus_tag')
 
 f <- names(gene) != 'attributes'
-kable(gene[1:15, f]) %>% kable_styling()
+kable(gene[1:15, f])
 ```
 
 

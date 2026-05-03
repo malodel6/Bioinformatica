@@ -3118,7 +3118,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Última actualización:</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">3 de marzo de 2026</p>
+      <p class="date">3 de mayo de 2026</p>
     </div>
   </div>
   
@@ -3987,12 +3987,136 @@ $uniprot
 <span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Del marco de datos &quot;equinodermata&quot; selecciono las filas que corresponden a los</span></span>
 <span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="co"># dominios exclusivos de equinodermos, y las filas &quot;accession&quot; y &quot;name&quot;:</span></span>
 <span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>equinodermata[equinodermata<span class="sc">$</span>accession <span class="sc">%in%</span> SoloEquinodermos,</span>
-<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>              <span class="fu">c</span>(<span class="st">&#39;accession&#39;</span>, <span class="st">&#39;name&#39;</span>)]<span class="er">)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<pre><code>Error in parse(text = input): &lt;text&gt;:5:38: unexpected &#39;)&#39;
-4: equinodermata[equinodermata$accession %in% SoloEquinodermos,
-5:               c(&#39;accession&#39;, &#39;name&#39;)])
-                                        ^</code></pre>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>              <span class="fu">c</span>(<span class="st">&#39;accession&#39;</span>, <span class="st">&#39;name&#39;</span>)]</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     accession
+212    PF00280
+1125   PF02084
+1230   PF02317
+1264   PF02456
+1265   PF02458
+1285   PF02543
+1288   PF02550
+1466   PF03004
+1468   PF03007
+1595   PF03385
+1601   PF03407
+1686   PF03722
+1875   PF04223
+1877   PF04230
+1962   PF04665
+2247   PF05522
+2375   PF06011
+2406   PF06151
+2443   PF06342
+2578   PF06972
+2579   PF06974
+2707   PF07705
+2746   PF07801
+2784   PF07953
+2833   PF08135
+2885   PF08250
+2932   PF08395
+3208   PF09331
+3245   PF09447
+3552   PF10492
+3621   PF10699
+3693   PF11696
+3741   PF11913
+4024   PF13093
+4039   PF13205
+4111   PF13474
+4129   PF13527
+4182   PF13715
+4279   PF13952
+4289   PF14023
+4309   PF14249
+4345   PF14519
+4867   PF15868
+4933   PF16029
+4948   PF16077
+5144   PF16861
+5164   PF16915
+5483   PF18511
+5556   PF19264
+5619   PF19798
+5646   PF20308
+5805   PF21105
+6406   PF23413
+6489   PF23722
+6577   PF24475
+6585   PF24494
+6619   PF24595
+6628   PF24633
+6638   PF24676
+6783   PF25161
+6814   PF25300
+7056   PF26178
+7108   PF26633
+                                                                   name
+212                                           Potato inhibitor I family
+1125                                                             Bindin
+1230     NAD/NADP octopine/nopaline dehydrogenase, alpha-helical domain
+1264                                            Adenovirus IVa2 protein
+1265                                                 Transferase family
+1285                                    Carbamoyltransferase N-terminus
+1288                 Acetyl-CoA hydrolase/transferase N-terminal domain
+1466                             Plant transposase (Ptta/En/Spm family)
+1468 Wax ester synthase/diacylglycerol acyltransferase catalytic domain
+1595                                        STELLO glycosyltransferases
+1601                             Nucleotide-diphospho-sugar transferase
+1686                                       Hemocyanin, all-alpha domain
+1875                                Citrate lyase, alpha subunit (CitF)
+1877                                 Polysaccharide pyruvyl transferase
+1962                                               Poxvirus A32 protein
+2247                                                    Metallothionein
+2375                     Transient receptor potential (TRP) ion channel
+2406                                                 Trehalose receptor
+2443                 Alpha/beta hydrolase of unknown function (DUF1057)
+2578                               GBF-interacting protein 1 N-terminal
+2579                                          WS/DGAT C-terminal domain
+2707                                                              CARDB
+2746                              Protein of unknown function (DUF1647)
+2784                Clostridium neurotoxin, N-terminal receptor binding
+2833                               Major transforming protein E5 family
+2885                                          Sperm-activating peptides
+2932                                          7tm Chemosensory receptor
+3208                               Domain of unknown function (DUF1985)
+3245                                           Cnl2/NKP2 family protein
+3552                      Nrf1 activator activation site binding domain
+3621                                          Male gamete fusion factor
+3693                              Protein of unknown function (DUF3292)
+3741                              Protein of unknown function (DUF3431)
+4024               Kinetochore complex Fta4 of Sim4 subunit, or CENP-50
+4039                                           Bacterial Ig-like domain
+4111                                                  SnoaL-like domain
+4129                                    Acetyltransferase (GNAT) domain
+4182                                        CarboxypepD_reg-like domain
+4279                               Domain of unknown function (DUF4216)
+4289                                             Bestrophin-like domain
+4309                                                 Tocopherol cyclase
+4345                                                  Macro-like domain
+4867                                       Transcription activator MBF2
+4933                               Domain of unknown function (DUF4787)
+4948                                                           Spaetzle
+5144                                    Carbamoyltransferase C-terminus
+5164                   Annelid erythrocruorin linker subunit C-terminus
+5483                                                              F-box
+5556                               Repeat of unknown function (DUF5907)
+5619                                            Sulfotransferase domain
+5646                                   Tetratricopeptide Repeats-Sensor
+5805                               DyP dimeric alpha+beta barrel domain
+6406                                      Vps8 RING zinc finger, fungal
+6489                                                 DEX1 beta-sandwich
+6577                                    DEAH11-like, RNA-binding domain
+6585                               Domain of unknown function (DUF7587)
+6619                               Domain of unknown function (DUF7619)
+6628                               Domain of unknown function (DUF7630)
+6638                               Domain of unknown function (DUF7656)
+6783                                          Menorin C-terminal domain
+6814                                        Dep-1 third Fn3-like domain
+7056                                       PI-PLC-like catalytic domain
+7108                               Domain of unknown function (DUF8206)</code></pre>
 </div>
 </div>
 </section>
@@ -4028,10 +4152,10 @@ other attached packages:
 [1] jsonlite_2.0.0
 
 loaded via a namespace (and not attached):
- [1] compiler_4.5.2    fastmap_1.2.0     cli_3.6.5         tools_4.5.2      
- [5] htmltools_0.5.9   rstudioapi_0.18.0 yaml_2.3.12       vctrs_0.7.1      
- [9] rmarkdown_2.30    knitr_1.51        xfun_0.56         digest_0.6.39    
-[13] rlang_1.1.7       evaluate_1.0.5   </code></pre>
+ [1] compiler_4.5.2    fastmap_1.2.0     cli_3.6.6         tools_4.5.2      
+ [5] htmltools_0.5.9   rstudioapi_0.18.0 yaml_2.3.12       vctrs_0.7.3      
+ [9] rmarkdown_2.31    knitr_1.51        xfun_0.57         digest_0.6.39    
+[13] rlang_1.2.0       evaluate_1.0.5   </code></pre>
 </div>
 </div>
 

@@ -103,9 +103,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="práctica-8-blast" class="level2">
-<h2 class="anchored" data-anchor-id="práctica-8-blast">Práctica 8: BLAST</h2>
-</section>
 <section id="ejercicio-1.-identificación-aproximada-de-ortólogos" class="level1">
 <h1>Ejercicio 1. Identificación aproximada de ortólogos</h1>
 <p>Una estrategia habitual para identificar genes ortólogos es comprobar si cada uno es, respecto del otro, su mejor resultado de BLAST. Lo que en inglés llaman reciprocal best hits. Aunque se trata de un método heurístico, los resultados son bastante fiables. Vamos a practicarlo entre dos proteomas que debes haber descargado, y que primero debemos enmascarar e indexar para BLAST.</p>
@@ -137,7 +134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="realizar-las-búsquedas-de-blastp" class="level1">
 <h1>Realizar las búsquedas de BLASTP</h1>
 <p>El objetivo es encontrar la proteína de Blochmannia ocreatus que más se parece a cada una de las proteínas de Buchnera aphidicola, y viceversa. Entonces, seleccionaremos las parejas de proteínas que sean recíprocamente las más similares una de otra, por ser más probablemente ortólogas. Otras relaciones de semejanza no recíprocas pueden ser debidas a la paralogía.</p>
-<p><em>De Buchnera aphidicola hacia Blochmannia ocreatus</em></p>
+<p><strong>De Buchnera aphidicola hacia Blochmannia ocreatus</strong></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">blastp</span> <span class="at">-query</span> ../../data/buchnera.fa <span class="dt">\</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">-db</span> ../../data/blochmannia <span class="dt">\</span></span>
@@ -149,7 +146,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>Warning: [blastp] Examining 5 or more matches is recommended</code></pre>
 </div>
 </div>
-<p><em>De Blochmannia ocreatus hacia Buchnera aphidicola</em></p>
+<p><strong>De Blochmannia ocreatus hacia Buchnera aphidicola</strong></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">blastp</span> <span class="at">-query</span> ../../data/blochmannia.fa <span class="dt">\</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">-db</span> ../../data/buchnera <span class="dt">\</span></span>

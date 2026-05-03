@@ -2,10 +2,8 @@
 title: "Práctica 8 BLAST"
 author: "Manuel López de la Reina Gisbert"
 format: html
+engine: knitr
 ---
-
-## Práctica 8: BLAST
-
 # Ejercicio 1. Identificación aproximada de ortólogos
 
 Una estrategia habitual para identificar genes ortólogos es comprobar si cada uno es, respecto del otro, su mejor resultado de BLAST. Lo que en inglés llaman reciprocal best hits. Aunque se trata de un método heurístico, los resultados son bastante fiables. Vamos a practicarlo entre dos proteomas que debes haber descargado, y que primero debemos enmascarar e indexar para BLAST.
@@ -13,6 +11,7 @@ Una estrategia habitual para identificar genes ortólogos es comprobar si cada u
 # Enmascarar e indexar los proteomas
 
 ```{bash}
+#| cache: true
 if [ ! -e ../../data/buchnera.paa ]; then
    # Creamos un archivo para enmascarar zonas de baja complejidad:
    if [ ! -e buchnera_seg.asnb ]; then
@@ -38,9 +37,10 @@ fi
 
 El objetivo es encontrar la proteína de Blochmannia ocreatus que más se parece a cada una de las proteínas de Buchnera aphidicola, y viceversa. Entonces, seleccionaremos las parejas de proteínas que sean recíprocamente las más similares una de otra, por ser más probablemente ortólogas. Otras relaciones de semejanza no recíprocas pueden ser debidas a la paralogía.
 
-*De Buchnera aphidicola hacia Blochmannia ocreatus*
+**De Buchnera aphidicola hacia Blochmannia ocreatus**
 
 ```{bash}
+#| cache: true
 blastp -query ../../data/buchnera.fa \
        -db ../../data/blochmannia \
        -out buc2blo.txt \
@@ -49,9 +49,10 @@ blastp -query ../../data/buchnera.fa \
        -max_target_seqs 1
 ```
 
-*De Blochmannia ocreatus hacia Buchnera aphidicola*
+**De Blochmannia ocreatus hacia Buchnera aphidicola**
 
 ```{bash}
+#| cache: true
 blastp -query ../../data/blochmannia.fa \
        -db ../../data/buchnera \
        -out blo2buc.txt \
@@ -65,6 +66,7 @@ Se puede revisar los argumentos utilizados, probando y asegurándose de que son 
 # Comparación de resultados
 
 ```{r}
+#| cache: true
 buc2blo <- read.table(
    'buc2blo.txt',
    col.names = c('query', 'subject', 'qlen', 'slen',
@@ -80,6 +82,7 @@ blo2buc <- read.table(
 *Echa un vistazo a estas tablas de resultados. ¿Sabrías identificar las parejas de proteínas que son recíprocamente la que más se parece una a la otra?*
 
 ```{r}
+#| cache: true
 buc2blo$reverse <- blo2buc[
    match(buc2blo$subject, blo2buc$query), #La función match sirve para comparar y                                            cruzar la información de dos tablas,                                             pudiendo crear una columna adicional.
    'subject'
@@ -101,6 +104,8 @@ Que el valor e sea bajo, lo que representaría que las secuencias son similares.
 El PSI-BLAST nos permite identificar semejanzas sutiles, como las que existen entre miembros alejados de una superfamilia proteica. Para comprobarlo vamos a realizar una búsqueda a partir de cualquiera de las proteínas siguientes: Q9CC91, P39615, B1AJI8, P47343, Q5UPT2, Q6UDG6, A1AFY9, O59825 y P30314. Todas ellas están en Swissprot y pertenecen a una misma superfamilia. Sin embargo, un simple BLASTP con cualquiera de ellas no encuentra ninguna de las otras. Comprobemos si con un PSI-BLAST lo conseguimos. A continuación lo intento a partir de P39615. Repite los pasos usando otra proteína de la lista como query y compara los resultados.
 
 ```{bash}
+#| cache: true
+#| warning: false
 # Como Swissprot debería estar ya descargada en `../../data`, podemos sacar
 # de ahí la secuencia de la proteína escogida:
 # Para hacer una búsqueda múltiple, introducimos esta línea inicial, para que sustituya donde aparece $proteina por todas las que introducimos en la lista

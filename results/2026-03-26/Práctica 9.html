@@ -8,7 +8,7 @@
 
 <meta name="author" content="Manuel López de la Reina Gisbert">
 
-<title>Práctica 9</title>
+<title>Práctica 9. Reconstrucción filogenética</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -3088,7 +3088,7 @@ vertical-align: -.125em;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Práctica 9</h1>
+<h1 class="title">Práctica 9. Reconstrucción filogenética</h1>
 </div>
 
 
@@ -3111,21 +3111,15 @@ vertical-align: -.125em;
 </header>
 
 
-<section id="práctica-9" class="level3">
-<h3 class="anchored" data-anchor-id="práctica-9">Práctica 9</h3>
-</section>
 <section id="ejercicio-1" class="level2">
 <h2 class="anchored" data-anchor-id="ejercicio-1">Ejercicio 1</h2>
 </section>
 <section id="leer-los-datos-en-r" class="level1">
 <h1>Leer los datos en R</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(phangorn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required package: ape</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mtdna <span class="ot">&lt;-</span> <span class="fu">read.phyDat</span>(<span class="st">&#39;mtDNA.fasta&#39;</span>, <span class="at">format =</span> <span class="st">&#39;fasta&#39;</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(mtdna)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(phangorn)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>mtdna <span class="ot">&lt;-</span> <span class="fu">read.phyDat</span>(<span class="st">&#39;mtDNA.fasta&#39;</span>, <span class="at">format =</span> <span class="st">&#39;fasta&#39;</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(mtdna)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  nseq nchar unique_site_pattern parsimony_informative_sites const_sites
 1   42 16603                 974                        2047       13482</code></pre>
@@ -3137,39 +3131,39 @@ vertical-align: -.125em;
 <h1>Escoger el modelo de evolución</h1>
 <p>Evaluar los 92 modelos posibles puede llevar un rato…</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>modelos <span class="ot">&lt;-</span> <span class="fu">modelTest</span>(mtdna, <span class="at">control =</span> <span class="fu">pml.control</span>(<span class="at">trace =</span> <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>modelos <span class="ot">&lt;-</span> <span class="fu">modelTest</span>(mtdna, <span class="at">control =</span> <span class="fu">pml.control</span>(<span class="at">trace =</span> <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Si tienes más de un procesador (y si tienes el paquete parallel instalado), puedes pedirle que los use:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>modelos <span class="ot">&lt;-</span> <span class="fu">modelTest</span>(mtdna, <span class="at">control =</span> <span class="fu">pml.control</span>(<span class="at">trace =</span> <span class="dv">0</span>),</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">multicore =</span> <span class="cn">TRUE</span>, <span class="at">mc.cores =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>modelos <span class="ot">&lt;-</span> <span class="fu">modelTest</span>(mtdna, <span class="at">control =</span> <span class="fu">pml.control</span>(<span class="at">trace =</span> <span class="dv">0</span>),</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">multicore =</span> <span class="cn">TRUE</span>, <span class="at">mc.cores =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Si no has tenido paciencia para dejar que termine la búsqueda, puedes usar el modelo más complejo: GTR+G(4)+I, porque la cantidad de datos lo permite, aunque en realidad el modelo con menor BIC es otro.</p>
 <p>El modelo con menor valor de BIC es TIM2+G(4)+I. Especifica que aplica una Gamma con 4 categorías. La I añade una categoría de la proporción de sitios invariables.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">as.pml</span>(modelos, <span class="st">&#39;BIC&#39;</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">show</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">as.pml</span>(modelos, <span class="st">&#39;BIC&#39;</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">show</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>model: TIM2+G(4)+I 
 loglikelihood: -44351.3 
 unconstrained loglikelihood: -45918.42 
-Proportion of invariant sites: 0.6119743 
+Proportion of invariant sites: 0.6119741 
 Model of rate heterogeneity: Discrete gamma model
 Number of rate categories: 4 
-Shape parameter: 0.9224029 
+Shape parameter: 0.9224019 
        Rate Proportion
-1 0.0000000 0.61197426
-2 0.3124093 0.09700644
-3 1.1651747 0.09700644
-4 2.5406825 0.09700644
-5 6.2903278 0.09700644
+1 0.0000000 0.61197405
+2 0.3124086 0.09700649
+3 1.1651732 0.09700649
+4 2.5406807 0.09700649
+5 6.2903265 0.09700649
 
 Rate matrix:
-          a         c        g         t
-a  0.000000  2.135791 66.51609  2.135791
-c  2.135791  0.000000  1.00000 54.135019
-g 66.516086  1.000000  0.00000  1.000000
-t  2.135791 54.135019  1.00000  0.000000
+        a        c      g        t
+a  0.0000  2.13580 66.516  2.13580
+c  2.1358  0.00000  1.000 54.13508
+g 66.5160  1.00000  0.000  1.00000
+t  2.1358 54.13508  1.000  0.00000
 
 Base frequencies:  
         a         c         g         t 
@@ -3182,10 +3176,10 @@ Base frequencies:
 <h1>NJ y UPGMA</h1>
 <p>La función dist.ml() de phangorn solo permite usar distancias de Juke Cantor y de Felsenstein 1981 con ADN. Para usar otros modelos, debemos usar la función dist.dna() del paquete ape (automáticamente cargado con phangorn), que se aplica a objetos de clase DNAbin. Por eso, usamos la función as.DNAbin() para presentarle a dist.dna() los datos en el formato adecuado. En cualquier caso, dist.dna() tampoco implementa todos los modelos.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mt_nj    <span class="ot">&lt;-</span>    <span class="fu">NJ</span>(<span class="fu">dist.dna</span>(<span class="fu">as.DNAbin</span>(mtdna), <span class="at">model =</span> <span class="st">&#39;TN93&#39;</span>, <span class="at">gamma =</span> <span class="fl">0.93</span>))</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>mt_upgma <span class="ot">&lt;-</span> <span class="fu">upgma</span>(<span class="fu">dist.dna</span>(<span class="fu">as.DNAbin</span>(mtdna), <span class="at">model =</span> <span class="st">&#39;TN93&#39;</span>, <span class="at">gamma =</span> <span class="fl">0.93</span>))</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">midpoint</span>(mt_nj))</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">add.scale.bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mt_nj    <span class="ot">&lt;-</span>    <span class="fu">NJ</span>(<span class="fu">dist.dna</span>(<span class="fu">as.DNAbin</span>(mtdna), <span class="at">model =</span> <span class="st">&#39;TN93&#39;</span>, <span class="at">gamma =</span> <span class="fl">0.93</span>))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>mt_upgma <span class="ot">&lt;-</span> <span class="fu">upgma</span>(<span class="fu">dist.dna</span>(<span class="fu">as.DNAbin</span>(mtdna), <span class="at">model =</span> <span class="st">&#39;TN93&#39;</span>, <span class="at">gamma =</span> <span class="fl">0.93</span>))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">midpoint</span>(mt_nj))</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">add.scale.bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -3193,8 +3187,8 @@ Base frequencies:
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mt_upgma)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">axisPhylo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mt_upgma)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">axisPhylo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -3211,8 +3205,8 @@ Base frequencies:
 <section id="podemos-enraizar-el-árbol" class="level1">
 <h1>Podemos enraizar el árbol</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>enraizado <span class="ot">&lt;-</span> <span class="fu">root</span>(mt_nj, <span class="st">&#39;G.gorilla_D38114&#39;</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(enraizado)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>enraizado <span class="ot">&lt;-</span> <span class="fu">root</span>(mt_nj, <span class="st">&#39;G.gorilla_D38114&#39;</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(enraizado)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -3226,9 +3220,9 @@ Base frequencies:
 <h1>Máxima verosimilitud</h1>
 <p><strong>Probamos con el modelo TIM2+G(4)+I. Como tarda mucho, con el argumento ratchet.par y control le añadimos un máximo de iteraciones</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>veros <span class="ot">&lt;-</span> <span class="fu">pml_bb</span>(fit,</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">ratchet.par =</span> <span class="fu">ratchet.control</span>(<span class="at">iter =</span> <span class="dv">5</span>L, <span class="at">maxit =</span> <span class="dv">10</span>L),</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">control =</span> <span class="fu">pml.control</span>(<span class="at">trace =</span> <span class="dv">1</span>, <span class="at">maxit =</span> <span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>veros <span class="ot">&lt;-</span> <span class="fu">pml_bb</span>(fit,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">ratchet.par =</span> <span class="fu">ratchet.control</span>(<span class="at">iter =</span> <span class="dv">5</span>L, <span class="at">maxit =</span> <span class="dv">10</span>L),</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">control =</span> <span class="fu">pml.control</span>(<span class="at">trace =</span> <span class="dv">1</span>, <span class="at">maxit =</span> <span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>optimize edge weights:  -44351.28 --&gt; -44351.28 
 optimize rate matrix:  -44351.28 --&gt; -44351.28 
@@ -3310,9 +3304,9 @@ optimize edge weights:  -44351.26 --&gt; -44351.26 </code></pre>
 </div>
 <p>El objeto veros, de clase pml, contiene el árbol (veros$tree), además de los parámetros optimizados del modelo. Podemos enraizar el árbol usando al gorila como outgroup:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mt_ml <span class="ot">&lt;-</span> <span class="fu">root</span>(veros<span class="sc">$</span>tree, <span class="st">&#39;G.gorilla_D38114&#39;</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">midpoint</span>(mt_ml))</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">nodelabels</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mt_ml <span class="ot">&lt;-</span> <span class="fu">root</span>(veros<span class="sc">$</span>tree, <span class="st">&#39;G.gorilla_D38114&#39;</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">midpoint</span>(mt_ml))</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">nodelabels</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -3324,8 +3318,8 @@ optimize edge weights:  -44351.26 --&gt; -44351.26 </code></pre>
 <p>Como estamos creando un midpoint para enraizarlo, realmente introduce el nodo 43 artificialmente.</p>
 <p>También podemos extraer un subárbol para visualizarlo mejor. Con nodelabels() identifico fácilmente cual es el nodo en el que quiero recortar el árbol:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>homo <span class="ot">&lt;-</span> <span class="fu">extract.clade</span>(mt_ml, <span class="dv">62</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">midpoint</span>(homo))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>homo <span class="ot">&lt;-</span> <span class="fu">extract.clade</span>(mt_ml, <span class="dv">62</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">midpoint</span>(homo))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -3339,14 +3333,14 @@ optimize edge weights:  -44351.26 --&gt; -44351.26 </code></pre>
 <h1>Con datación de puntas (tip dating)</h1>
 <p>Sabiendo que algunas secuencias dejaron de evolucionar hace tiempo (mira el apéndice), podemos intentar calibrar las tasas de sustitución con esta información. Para ello necesitamos un vector de fechas con nombres, donde cada fecha lleva el nombre de la secuencia a la que corresponde. Podemos dar el valor 0 a todas las secuencias contemporáneas y valores negativos, en años, a las secuencias arcaicas.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>fechas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>,</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>              <span class="sc">-</span><span class="dv">400000</span>,</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>              <span class="sc">-</span><span class="dv">39000</span>, <span class="sc">-</span><span class="dv">50000</span>, <span class="sc">-</span><span class="dv">110000</span>, <span class="sc">-</span><span class="dv">110000</span>,</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>              <span class="sc">-</span><span class="dv">39820</span>, <span class="sc">-</span><span class="dv">40096</span>, <span class="sc">-</span><span class="dv">38515</span>, <span class="sc">-</span><span class="dv">38310</span>, <span class="sc">-</span><span class="dv">39000</span>, <span class="sc">-</span><span class="dv">40000</span>, <span class="sc">-</span><span class="dv">41210</span>,</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>              <span class="sc">-</span><span class="dv">42430</span>, <span class="sc">-</span><span class="dv">42540</span>, <span class="sc">-</span><span class="dv">43230</span>, <span class="sc">-</span><span class="dv">43780</span>, <span class="sc">-</span><span class="dv">44290</span>, <span class="sc">-</span><span class="dv">44770</span>, <span class="sc">-</span><span class="dv">49000</span>,</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>              <span class="sc">-</span><span class="dv">50000</span>, <span class="sc">-</span><span class="dv">82752</span>, <span class="sc">-</span><span class="dv">65000</span>, <span class="sc">-</span><span class="dv">122287</span>, <span class="sc">-</span><span class="dv">110450</span>,</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>              <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="fu">setNames</span>(fechas, <span class="fu">names</span>(mtdna))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fechas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>,</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>              <span class="sc">-</span><span class="dv">400000</span>,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>              <span class="sc">-</span><span class="dv">39000</span>, <span class="sc">-</span><span class="dv">50000</span>, <span class="sc">-</span><span class="dv">110000</span>, <span class="sc">-</span><span class="dv">110000</span>,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>              <span class="sc">-</span><span class="dv">39820</span>, <span class="sc">-</span><span class="dv">40096</span>, <span class="sc">-</span><span class="dv">38515</span>, <span class="sc">-</span><span class="dv">38310</span>, <span class="sc">-</span><span class="dv">39000</span>, <span class="sc">-</span><span class="dv">40000</span>, <span class="sc">-</span><span class="dv">41210</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>              <span class="sc">-</span><span class="dv">42430</span>, <span class="sc">-</span><span class="dv">42540</span>, <span class="sc">-</span><span class="dv">43230</span>, <span class="sc">-</span><span class="dv">43780</span>, <span class="sc">-</span><span class="dv">44290</span>, <span class="sc">-</span><span class="dv">44770</span>, <span class="sc">-</span><span class="dv">49000</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>              <span class="sc">-</span><span class="dv">50000</span>, <span class="sc">-</span><span class="dv">82752</span>, <span class="sc">-</span><span class="dv">65000</span>, <span class="sc">-</span><span class="dv">122287</span>, <span class="sc">-</span><span class="dv">110450</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>              <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="fu">setNames</span>(fechas, <span class="fu">names</span>(mtdna))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           G.gorilla_D38114      P.troglodytes_JF727212 
                           0                           0 
@@ -3393,15 +3387,15 @@ optimize edge weights:  -44351.26 --&gt; -44351.26 </code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>fit_td <span class="ot">&lt;-</span> <span class="fu">pml_bb</span>(mtdna, <span class="at">model =</span> <span class="st">&#39;TIM2+G(4)+I&#39;</span>, <span class="at">method =</span> <span class="st">&#39;tipdated&#39;</span>,</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">tree =</span> enraizado,</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">tip.dates =</span> fechas, <span class="at">rearrangement =</span> <span class="st">&#39;NNI&#39;</span>,</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ratchet.par =</span> <span class="fu">ratchet.control</span>(<span class="at">maxit =</span> <span class="dv">10</span>L),</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">control =</span> <span class="fu">pml.control</span>(<span class="at">trace =</span> <span class="dv">0</span>, <span class="at">maxit =</span> <span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>fit_td <span class="ot">&lt;-</span> <span class="fu">pml_bb</span>(mtdna, <span class="at">model =</span> <span class="st">&#39;TIM2+G(4)+I&#39;</span>, <span class="at">method =</span> <span class="st">&#39;tipdated&#39;</span>,</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">tree =</span> enraizado,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">tip.dates =</span> fechas, <span class="at">rearrangement =</span> <span class="st">&#39;NNI&#39;</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ratchet.par =</span> <span class="fu">ratchet.control</span>(<span class="at">maxit =</span> <span class="dv">10</span>L),</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">control =</span> <span class="fu">pml.control</span>(<span class="at">trace =</span> <span class="dv">0</span>, <span class="at">maxit =</span> <span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Con tipdated obligamos a que el árbol sea ultramétrico, respetando las edades</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit_td)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit_td)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -3412,7 +3406,7 @@ optimize edge weights:  -44351.26 --&gt; -44351.26 </code></pre>
 </div>
 <p>Para estimar se puede emplear estimate.mu() y estimate.dates().</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">estimate.mu</span>(mt_ml, <span class="at">node.dates =</span> fechas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">estimate.mu</span>(mt_ml, <span class="at">node.dates =</span> fechas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in estimate.mu(mt_ml, node.dates = fechas): Cannot reject null
 hypothesis (p= 0.509473692148436 )</code></pre>

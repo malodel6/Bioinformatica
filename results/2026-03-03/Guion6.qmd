@@ -374,7 +374,7 @@ SoloEquinodermos <- setdiff(equinodermata$accession, chordata$accession)
 # Del marco de datos "equinodermata" selecciono las filas que corresponden a los
 # dominios exclusivos de equinodermos, y las filas "accession" y "name":
 equinodermata[equinodermata$accession %in% SoloEquinodermos,
-              c('accession', 'name')])
+              c('accession', 'name')]
 ```
 
 # Bibliografía
